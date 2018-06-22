@@ -203,7 +203,7 @@ class AuthInfo(JsonDeserializable):
         person_id = obj['personId']
         pin_info = PinInfo.de_json(obj['pinInfo'])
         if obj['registrationDate']:
-            registration_date = cls.decode_date(obj['registrationDate'])
+            registration_date = obj['registrationDate']
         else:
             registration_date = None
         return cls(bound_email, ip, last_login_date, mobile_pin_info,
