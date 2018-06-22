@@ -195,7 +195,7 @@ class AuthInfo(JsonDeserializable):
         bound_email = obj['boundEmail']
         ip = obj['ip']
         if obj['lastLoginDate']:
-            last_login_date = cls.decode_date(obj['lastLoginDate'])
+            last_login_date = obj['lastLoginDate']
         else:
             last_login_date = None
         mobile_pin_info = MobilePinInfo.de_json(obj['mobilePinInfo'])
