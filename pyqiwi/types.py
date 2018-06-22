@@ -39,20 +39,6 @@ class JsonDeserializable:
         else:
             raise ValueError("json_type should be a json dict or string.")
 
-    @staticmethod
-    def decode_date(date_string: str):
-        """
-        Декодирует дату из строки вида отправляемого Qiwi API ISO-8601
-
-        Returns
-        -------
-        datetime.datetime данной строки 
-        """
-        if isinstance(date_string, str):
-            return dateutil.parser.parse(date_string)
-        else:
-            raise TypeError('types.JsonDeserializable.decode_date only accepts date_string as str type')
-
     def __str__(self):
         d = {}
         for x, y in six.iteritems(self.__dict__):
@@ -203,7 +189,7 @@ class AuthInfo(JsonDeserializable):
         person_id = obj['personId']
         pin_info = PinInfo.de_json(obj['pinInfo'])
         if obj['registrationDate']:
-            registration_date = cls.decode_date(obj['registrationDate'])
+            registration_date = obj['registrationDate']
         else:
             registration_date = None
         return cls(bound_email, ip, last_login_date, mobile_pin_info,
